@@ -8,16 +8,12 @@ const __dirname = path.dirname(__filename)
 const app = express()
 const PORT = process.env.PORT || 8080
 
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'dist')))
 
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.get('*', (req, res) => {
-  res.render('index')
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
 })
 
 app.listen(PORT, () => {
-  console.log('Server running at http://localhost:' + PORT)
-  console.log('Serving views from: ' + path.join(__dirname, 'views'))
+  console.log(`Server running at http://localhost:${PORT}`)
 })
