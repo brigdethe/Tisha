@@ -1,4 +1,6 @@
-export function SectionCta(): JSX.Element {
+interface SectionCtaProps { onBook: () => void }
+
+export function SectionCta({ onBook }: SectionCtaProps): JSX.Element {
   return (
     <section id="book" className="cta">
       <div className="cta-inner">
@@ -8,7 +10,7 @@ export function SectionCta(): JSX.Element {
           </div>
           <div>Experience comfort and luxury in Asuaba</div>
         </div>
-        <a href="#book" className="primary-button w-inline-block">
+        <a href="#" className="primary-button w-inline-block" onClick={e => { e.preventDefault(); onBook() }}>
           <div>Book Now</div>
         </a>
       </div>

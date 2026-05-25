@@ -1,4 +1,6 @@
-export function SectionBooking(): JSX.Element {
+interface SectionBookingProps { onBook: () => void }
+
+export function SectionBooking({ onBook }: SectionBookingProps): JSX.Element {
   return (
     <section className="women-s-health">
       <div className="wh-inner">
@@ -9,7 +11,7 @@ export function SectionBooking(): JSX.Element {
             <div className="section-heading">Comfortable and Easy</div>
           </div>
           <div className="wh-wrap">
-            <a href="#book" className="wh-block w-inline-block">
+            <a href="#" className="wh-block w-inline-block" onClick={e => { e.preventDefault(); onBook() }}>
               <div className="wh-top">
                 <div className="health-box">
                   <div className="wh-text">Book Online</div>

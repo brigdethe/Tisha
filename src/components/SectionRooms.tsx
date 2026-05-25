@@ -1,4 +1,6 @@
-export function SectionRooms(): JSX.Element {
+interface SectionRoomsProps { onBook: (roomId: string) => void }
+
+export function SectionRooms({ onBook }: SectionRoomsProps): JSX.Element {
   return (
     <section id="rooms" className="team">
       <div className="w-layout-blockcontainer container w-container">
@@ -23,7 +25,7 @@ export function SectionRooms(): JSX.Element {
               <div className="team-block">
                 <div className="team-img">
                   <img src="https://ik.imagekit.io/fqsfbn5ad/tishaimages/junior-room.jpg?updatedAt=1779330481819" loading="lazy" alt="Junior Suite" className="team-image" />
-                  <div className="team-tag">
+                  <div className="team-tag" onClick={() => onBook('junior-suite')} style={{ cursor: 'pointer' }}>
                     <div>Book Now</div>
                     <img src="https://cdn.prod.website-files.com/69c4d31e44bb0ae4ccbe80dc/69cca858002272ce39a512aa_asset%2084.svg" loading="lazy" alt="Plus Icon" className="plus-icon" />
                   </div>
@@ -41,7 +43,7 @@ export function SectionRooms(): JSX.Element {
               <div className="team-block">
                 <div className="team-img">
                   <img src="https://ik.imagekit.io/fqsfbn5ad/tishaimages/standard-room.jpg?updatedAt=1779330481779" loading="lazy" alt="Standard Room" className="team-image" />
-                  <div className="team-tag">
+                  <div className="team-tag" onClick={() => onBook('standard-room')} style={{ cursor: 'pointer' }}>
                     <div>Book Now</div>
                     <img src="https://cdn.prod.website-files.com/69c4d31e44bb0ae4ccbe80dc/69cca858002272ce39a512aa_asset%2084.svg" loading="lazy" alt="Plus Icon" className="plus-icon" />
                   </div>
@@ -59,7 +61,7 @@ export function SectionRooms(): JSX.Element {
               <div className="team-block">
                 <div className="team-img">
                   <img src="https://ik.imagekit.io/fqsfbn5ad/tishaimages/master-room.jpg?updatedAt=1779330481747" loading="lazy" alt="Master Room" className="team-image" />
-                  <div className="team-tag">
+                  <div className="team-tag" onClick={() => onBook('master-room')} style={{ cursor: 'pointer' }}>
                     <div>Book Now</div>
                     <img src="https://cdn.prod.website-files.com/69c4d31e44bb0ae4ccbe80dc/69cca858002272ce39a512aa_asset%2084.svg" loading="lazy" alt="Plus Icon" className="plus-icon" />
                   </div>

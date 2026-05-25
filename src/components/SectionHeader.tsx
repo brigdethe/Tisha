@@ -1,4 +1,6 @@
-export function SectionHeader(): JSX.Element {
+interface SectionHeaderProps { onBook: (roomId?: string) => void }
+
+export function SectionHeader({ onBook }: SectionHeaderProps): JSX.Element {
   return (
     <section className="header">
       <div
@@ -30,7 +32,7 @@ export function SectionHeader(): JSX.Element {
                 </div>
                 <div className="mobile-none">Tisha Hotel</div>
               </div>
-              <a href="#book" className="nav-button w-inline-block">
+              <a href="#" className="nav-button w-inline-block" onClick={e => { e.preventDefault(); onBook() }}>
                 <div>Book Now</div>
               </a>
             </div>
@@ -55,21 +57,21 @@ export function SectionHeader(): JSX.Element {
         <div className="open-menu-wrap">
           <div className="om-title">Tisha Hotel Rooms</div>
           <div>
-            <a href="#rooms" className="om-info w-inline-block">
+            <a href="#" className="om-info w-inline-block" onClick={e => { e.preventDefault(); onBook('junior-suite') }}>
               <div className="om-inner">
                 <div className="om-bg"></div>
                 <div>Junior Suite</div>
               </div>
               <img src="https://cdn.prod.website-files.com/69c4d31e44bb0ae4ccbe80dc/69cca85955311a5774399b0e_asset%204.svg" loading="lazy" alt="Arrow" />
             </a>
-            <a href="#rooms" className="om-info w-inline-block">
+            <a href="#" className="om-info w-inline-block" onClick={e => { e.preventDefault(); onBook('standard-room') }}>
               <div className="om-inner">
                 <div className="om-bg _02"></div>
                 <div>Standard Room</div>
               </div>
               <img src="https://cdn.prod.website-files.com/69c4d31e44bb0ae4ccbe80dc/69cca85955311a5774399b0e_asset%204.svg" loading="lazy" alt="Arrow" />
             </a>
-            <a href="#rooms" className="om-info w-inline-block">
+            <a href="#" className="om-info w-inline-block" onClick={e => { e.preventDefault(); onBook('master-room') }}>
               <div className="om-inner">
                 <div className="om-bg _03"></div>
                 <div>Master Room</div>

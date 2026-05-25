@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { SectionHeader } from './components/SectionHeader'
 import { SectionHero } from './components/SectionHero'
 import { SectionMarquee } from './components/SectionMarquee'
@@ -6,16 +6,14 @@ import { SectionBooking } from './components/SectionBooking'
 import { SectionRooms } from './components/SectionRooms'
 import { SectionAmenities } from './components/SectionAmenities'
 import { SectionFacts } from './components/SectionFacts'
-// import { SectionCare } from './components/SectionCare'
-// import { SectionReviews } from './components/SectionReviews'
-// import { SectionWellness } from './components/SectionWellness'
 import { SectionCta } from './components/SectionCta'
 import { SectionFooter } from './components/SectionFooter'
+import { ReservationModal } from './components/ReservationModal'
 
 const WEBFLOW_SCRIPTS = [
   {
     src: '/external/js/script-d3e54v103j8qbb-cloudfront-net.js',
-    integrity: 'sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=',
+    integrity: 'sha384-I9nvsY534/cx2CBx9qnDDuNkP4tBw4Va7eW8+2CXSaiPmfhB42fq032++kvT8woz',
   },
   {
     src: '/external/js/script-69c4d31e44bb0ae4ccbe80dc.js',
@@ -28,6 +26,14 @@ const WEBFLOW_SCRIPTS = [
 ]
 
 export function App(): JSX.Element {
+  const [isReservationOpen, setIsReservationOpen] = useState(false)
+  const [preSelectedRoomId, setPreSelectedRoomId] = useState<string | null>(null)
+
+  function openReservation(roomId?: string) {
+    setPreSelectedRoomId(roomId ?? null)
+    setIsReservationOpen(true)
+  }
+
   useEffect(() => {
     WEBFLOW_SCRIPTS.forEach(({ src, integrity }) => {
       if (document.querySelector(`script[src="${src}"]`)) return
@@ -42,18 +48,20 @@ export function App(): JSX.Element {
 
   return (
     <>
-      <SectionHeader />
-      <SectionHero />
+      <SectionHeader onBook={openReservation} />
+      <SectionHero onBook={() => openReservation()} />
       <SectionMarquee />
-      <SectionBooking />
-      <SectionRooms />
+      <SectionBooking onBook={() => openReservation()} />
+      <SectionRooms onBook={openReservation} />
       <SectionAmenities />
       <SectionFacts />
-      {/* <SectionCare /> */}
-      {/* <SectionReviews /> */}
-      {/* <SectionWellness /> */}
-      <SectionCta />
+      <SectionCta onBook={() => openReservation()} />
       <SectionFooter />
+      <ReservationModal
+        isOpen={isReservationOpen}
+        preSelectedRoomId={preSelectedRoomId}
+        onClose={() => setIsReservationOpen(false)}
+      />
     </>
   )
 }

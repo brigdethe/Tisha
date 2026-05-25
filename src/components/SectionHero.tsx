@@ -1,6 +1,8 @@
 import { useHeroMedia } from '../hooks/useHeroMedia'
 
-export function SectionHero(): JSX.Element {
+interface SectionHeroProps { onBook: () => void }
+
+export function SectionHero({ onBook }: SectionHeroProps): JSX.Element {
   const { containerRef, mode } = useHeroMedia()
 
   return (
@@ -47,7 +49,7 @@ export function SectionHero(): JSX.Element {
             </div>
             <div className="hero-text">Experience comfort and luxury in Asuaba</div>
             <div className="heor-button-wrap">
-              <a href="#book" className="hero-button w-inline-block">
+              <a href="#" className="hero-button w-inline-block" onClick={e => { e.preventDefault(); onBook() }}>
                 <div>Book A Stay</div>
               </a>
               <a href="#contact" className="hero-button w-inline-block">
